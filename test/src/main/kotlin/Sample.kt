@@ -6,7 +6,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 
 val gson: Gson = GsonBuilder()
-    .registerTypeAdapterFactory(GsonDefaultAdapterFactory())
+//    .registerTypeAdapterFactory(GsonDefaultAdapterFactory())
     .create()
 
 val moshi: Moshi = Moshi.Builder()
@@ -30,7 +30,7 @@ fun testDefaultAll() {
     val p1 = gson.fromJson(json, DefaultAll::class.java)
     println("gson parse json: $p1")
     val p2 = moshi.adapter(DefaultAll::class.java).fromJson(json)
-    println("moshi parse json: $p2")
+    println("com.squareup.moshi parse json: $p2")
 }
 
 
@@ -50,7 +50,7 @@ fun testDefaultPart() {
     val p1 = gson.fromJson(json, DefaultPart::class.java)
     println("gson parse json: $p1")
     val p2 = moshi.adapter(DefaultPart::class.java).fromJson(json)
-    println("moshi parse json: $p2")
+    println("com.squareup.moshi parse json: $p2")
 }
 
 
@@ -71,9 +71,9 @@ fun testMoshiNullValue() {
     // 这里必须要有age字段，moshi为了保持空安全不允许age为null
     val json = """{"name":null, "friends":null}"""
     val p2 = moshi.adapter(Person::class.java).fromJson(json)
-    println("moshi parse json: $p2")
+    println("com.squareup.moshi parse json: $p2")
 }
 
 fun main() {
-    testMoshiNullValue()
+    testGsonNullValue()
 }
