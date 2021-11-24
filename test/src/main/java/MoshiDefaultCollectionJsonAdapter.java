@@ -87,8 +87,10 @@ public abstract class MoshiDefaultCollectionJsonAdapter<C extends Collection<T>,
     @Override
     public void toJson(JsonWriter writer, C value) throws IOException {
         writer.beginArray();
-        for (T element : value) {
-            elementAdapter.toJson(writer, element);
+        if (value != null) {
+            for (T element : value) {
+                elementAdapter.toJson(writer, element);
+            }
         }
         writer.endArray();
     }
