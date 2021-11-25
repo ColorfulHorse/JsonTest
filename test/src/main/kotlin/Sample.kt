@@ -6,7 +6,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 
 val gson: Gson = GsonBuilder()
-//    .registerTypeAdapterFactory(GsonDefaultAdapterFactory())
+    .registerTypeAdapterFactory(GsonDefaultAdapterFactory())
     .create()
 
 val moshi: Moshi = Moshi.Builder()
