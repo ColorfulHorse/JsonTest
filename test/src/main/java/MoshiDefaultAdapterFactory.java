@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2014 Square, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.JsonDataException;
@@ -36,15 +19,10 @@ import java.util.Set;
 import static com.squareup.moshi.internal.Util.generatedAdapter;
 
 /**
- * @author greensun
- * @date 2020/5/15
- * @desc 空字段转换成默认值  更改自{@link com.squareup.moshi.StandardJsonAdapters}
- * <p>
- * data class 反序列化时，如果使用gson，那么默认值会失效，比如int age默认值为20，response没有这个字段，序列化之后该值被覆盖为0或null；
- * <p>
- * 如果value为null，使用gson时非空类型会被null填充，而kotlin下使用moshi在声明类型为非空情况下会抛异常
+ * 用于将Json的中null替换成固定类型的默认值
+ * 比如说 data class(val name: String)  json: {"name": null}
+ * 可以将name设为预设的全局固定值，从而避免被null覆盖导致异常
  */
-
 public final class MoshiDefaultAdapterFactory {
     private MoshiDefaultAdapterFactory() {
     }

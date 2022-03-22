@@ -12,13 +12,6 @@ repositories {
 
 sourceSets["main"].java.srcDir("src/main/java")
 
-//noArg {
-//    // 空参构造函数是否调用辅助构造函数初始化默认值  好像有bug，不生效
-//    invokeInitializers = true
-//    // 注解的完整类名
-//    annotations("NoArg")
-//}
-
 
 dependencies {
     testImplementation(kotlin("test"))

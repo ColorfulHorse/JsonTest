@@ -1,6 +1,7 @@
 package com.squareup.moshi;
 
 import okio.BufferedSource
+import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -10,9 +11,7 @@ class DefaultIfNullFactory : JsonAdapter.Factory {
         annotations: MutableSet<out Annotation>,
         moshi: Moshi
     ): JsonAdapter<*>? {
-
         val delegate = moshi.nextAdapter<Any>(this, type, annotations)
-
         if (annotations.isNotEmpty()) return null
         if (type === Boolean::class.javaPrimitiveType) return delegate
         if (type === Byte::class.javaPrimitiveType) return delegate

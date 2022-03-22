@@ -14,13 +14,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author greensun
- * @date 2021/6/2
- * @desc null 转换成空collection  更改自{@link com.squareup.moshi.CollectionJsonAdapter}
- * <p>
- * 如果字段声明为Collection, json中值为null，kotlin下在声明类型为非空情况下会抛异常，这里给一个空Collection填充
- */
 public abstract class MoshiDefaultCollectionJsonAdapter<C extends Collection<T>, T> extends JsonAdapter<C> {
     public static final Factory FACTORY =
             new Factory() {
