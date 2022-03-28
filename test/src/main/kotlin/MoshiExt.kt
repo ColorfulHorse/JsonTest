@@ -25,3 +25,8 @@ inline fun <reified T> T.toJson() = moshi.adapter(T::class.java)
 
 inline fun <reified T> String.toBean() = moshi.adapter(T::class.java)
     .fromJson(this)
+
+
+fun printlnR(content: Any?) {
+    println("\u001b[1;31m$content")
+}
