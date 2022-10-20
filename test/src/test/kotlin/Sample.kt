@@ -35,16 +35,15 @@ class Sample {
 
 
     val gson: Gson = GsonBuilder()
-//    .registerTypeAdapterFactory(default.GsonDefaultAdapterFactory())
+        .registerTypeAdapterFactory(GsonDefaultAdapterFactory())
         .create()
 
 
     val moshi: Moshi = Moshi.Builder()
         // KotlinJsonAdapterFactory基于kotlin-reflection反射创建自定义类型的JsonAdapter
-//    .addLast(KotlinJsonAdapterFactory())
-//    .add(MoshiDefaultAdapterFactory.FACTORY)
-//    .add(MoshiDefaultCollectionJsonAdapter.FACTORY)
-        .add(DefaultIfNullFactory())
+        .addLast(KotlinJsonAdapterFactory())
+        .add(MoshiDefaultAdapterFactory.FACTORY)
+        .add(MoshiDefaultCollectionJsonAdapter.FACTORY)
         .build()
 
     /**
@@ -92,7 +91,9 @@ class Sample {
         printlnR("Moshi parse json: $p2")
     }
 
-
+    val case3Moshi: Moshi = Moshi.Builder()
+        .add(DefaultIfNullFactory())
+        .build()
 
     /**
      * 自定义类型为空
@@ -102,8 +103,8 @@ class Sample {
         val json = """{"name":null, "leader":null}"""
         val p1 = gson.fromJson(json, Team::class.java)
         // gson没有空安全检查，编译器都无法推断
-        if (p1.name == null) {
-            printlnR("Gson parse json p1 name was null")
+        if (p1.leader == null) {
+            printlnR("Gson parse json p1 leader was null")
         }
         printlnR("Gson parse json: $p1")
     }
@@ -111,7 +112,7 @@ class Sample {
     @Test
     fun testMoshiCustomNullValue() {
         val json = """{"name":null, "leader":null}"""
-        val p2 = moshi.adapter(Team::class.java).fromJson(json)
+        val p2 = case3Moshi.adapter(Team::class.java).fromJson(json)
         printlnR("Moshi parse json: $p2")
     }
 }
