@@ -18,6 +18,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.7")
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
+    implementation("com.alibaba:fastjson:1.2.35")
+//    implementation("com.alibaba.fastjson2:fastjson2-kotlin:2.0.17")
 }
 
 

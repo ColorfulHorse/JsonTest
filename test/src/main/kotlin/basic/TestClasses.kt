@@ -1,5 +1,8 @@
 package basic
 
+import com.alibaba.fastjson.annotation.JSONField
+import com.alibaba.fastjson.annotation.JSONType
+import com.google.gson.annotations.JsonAdapter
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import transform.DateText
@@ -20,8 +23,8 @@ import transform.IllegalFilter
 @JsonClass(generateAdapter = true)
 data class Person(
     @Json(name = "_name")
-    val name: String,
-    val age: Int
+    val name: String?,
+    val age: Int?
 )
 
 
@@ -29,10 +32,13 @@ data class Person(
 data class DefaultAll(
     val name: String = "me",
     val age: Int = 25
-)
+) {
+//    fun getGender() = "male"
+}
 
 
 @JsonClass(generateAdapter = true)
+//@JSONType(deserializer = )
 data class DefaultPart(
     val name: String = "me",
     val gender: String = "male",
@@ -44,17 +50,25 @@ data class DefaultPart(
 
 @JsonClass(generateAdapter = true)
 data class People(
-    val name: String,
-    val friends: List<People>
+    val name: String = "",
+    val friends: List<People> = listOf()
 )
 
 
 @JsonClass(generateAdapter = true)
 data class Team(
-    val name: String? = "default",
+    val name: String = "default",
     val leader: People = People("default", emptyList())
 )
 
 
 @JsonClass(generateAdapter = true)
-data class Article(@IllegalFilter val content: String, @DateText val time: String, @HexColor val textColor: Int)
+data class Article(@IllegalFilter
+//                   @JsonAdapter(value = "adapter")
+//                    @JSONField(deserializeUsing = "deserializer")
+                   val content: String,
+                   @DateText val time: String,
+                   @HexColor val textColor: Int)
+
+@JsonClass(generateAdapter = true)
+data class Speed(val a: Int = 0, val b: String = "", val c: Boolean = false, val d: Short = 0, val e: Float = 1.0f)

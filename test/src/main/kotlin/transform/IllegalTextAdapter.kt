@@ -7,7 +7,6 @@ import com.squareup.moshi.ToJson
  * Author : greensunliao
  * Date   : 2022/3/10
  * Email  : liao962381394@sina.cn
- * Blog   : https://juejin.cn/user/3263006244363095
  * Desc   :
  */
 

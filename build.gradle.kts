@@ -2,12 +2,14 @@
 allprojects {
     repositories {
         mavenCentral()
+        maven("https://maven.aliyun.com/repository/jcenter")
     }
 }
 
 buildscript {
     repositories {
         mavenCentral()
+        maven("https://maven.aliyun.com/repository/jcenter")
     }
 
     dependencies {

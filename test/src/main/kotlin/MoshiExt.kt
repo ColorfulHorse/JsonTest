@@ -1,5 +1,5 @@
-import com.squareup.moshi.Moshi
-import transform.DateText
+import basic.Article
+import com.squareup.moshi.*
 import transform.DateTextAdapter
 import transform.HexColorAdapter
 import transform.IllegalTextAdapter
@@ -17,10 +17,20 @@ val moshi: Moshi by lazy {
         .add(IllegalTextAdapter())
         .add(HexColorAdapter())
         .add(DateTextAdapter())
+//        .addAdapter(object : JsonAdapter<Article>() {
+//            override fun fromJson(reader: JsonReader): Article? {
+//
+//            }
+//
+//            override fun toJson(writer: JsonWriter, value: Article?) {
+//
+//            }
+//
+//        })
         .build()
 }
 
-inline fun <reified T> T.toJson() = moshi.adapter(T::class.java)
+inline fun <reified T> T.toJson(): String = moshi.adapter(T::class.java)
     .toJson(this)
 
 inline fun <reified T> String.toBean() = moshi.adapter(T::class.java)
